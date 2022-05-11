@@ -352,7 +352,7 @@ const KEYS = [
         "isFunctional": true,
     },
     {
-        "code": "ShiftLeft",
+        "code": "ShiftRight",
         "size": "large",
         "content": "Shift",
         "isFunctional": true,
@@ -385,7 +385,7 @@ const KEYS = [
         "capsCase": " ",
     },
     {
-        "code": "AltLeft",
+        "code": "AltRight",
         "size": "standard",
         "content": "Alt",
         "isFunctional": true,
@@ -409,7 +409,7 @@ const KEYS = [
         "isFunctional": true,
     },
     {
-        "code": "ControlLeft",
+        "code": "ControlRight",
         "size": "standard",
         "content": "Ctrl",
         "isFunctional": true,
@@ -423,15 +423,23 @@ const TEXTAREA = document.createElement('textarea');
 const KEYBOARD_CONTAINER = document.createElement('div');
 const COMMENTS = document.createElement('div'); 
 
+
 //let language = localStorage.getItem('keyboardLanguage') || 'en';
 //window.addEventListener('beforeunload', () => localStorage.setItem('keyboardLanguage', language));
 
 document.addEventListener('DOMContentLoaded', createPage); //отрисовываем структуру страницы
 createKeyboard(/*language*/); //отрисовываем клавиатуру
 
+// клики мышкой по кнопкам на виртуальной клавиатуре выводят символы в textarea
+document.addEventListener('click', (event) => {
+    if(event.target.classList.contains('key') && !event.target.classList.contains('functional')){
+        TEXTAREA.innerHTML += event.target.innerHTML; 
+    };
+});
+
+//нажатие на кнопку на физической клавиатуре подсвечивает кнопку на виртуальной:
 document.addEventListener('keydown', function(event) {
    let activeKey = document.getElementById(event.code);
-   console.log(activeKey);
    activeKey.classList.add('active');
 });
 document.addEventListener('keyup', function(event) {
@@ -440,7 +448,7 @@ document.addEventListener('keyup', function(event) {
  });
 
 
-
+// генерация DOM-элементов
 function createPage () {
     document.body.appendChild(MAIN);
     MAIN.classList.add('main-container');
@@ -457,10 +465,12 @@ function createPage () {
     TEXTAREA.setAttribute('id', 'textarea');
     TEXTAREA.setAttribute('name', 'textarea');
     TEXTAREA.setAttribute('rows', '6');
+    TEXTAREA.setAttribute('autofocus', true);
     WRAPPER.appendChild(TEXTAREA);
 
     KEYBOARD_CONTAINER.classList.add('keyboard-container')
     WRAPPER.appendChild(KEYBOARD_CONTAINER);
+
 
     WRAPPER.appendChild(COMMENTS);
     COMMENTS.classList.add('comments')
@@ -472,7 +482,6 @@ function createPage () {
     comment2.innerHTML = 'Для переключения языка использовать комбинацию: Shift + Alt';
     COMMENTS.appendChild(comment2);
 };
- 
 
 function createKeyboard() {
    let row0 = document.createElement('div');
