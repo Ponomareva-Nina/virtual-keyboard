@@ -112,8 +112,12 @@
 
 .key:hover {
   cursor: pointer;
-  border-color: #d0b084;
-  background-color: #e4dbd1;
+  border-color: #f78d14;
+  color: #202024;
+}
+
+.active {
+  border-color: #f78d14;
   color: #202024;
 }
 

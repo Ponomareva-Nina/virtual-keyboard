@@ -421,11 +421,25 @@ const WRAPPER = document.createElement('div');
 const TITLE = document.createElement('h1');
 const TEXTAREA = document.createElement('textarea');
 const KEYBOARD_CONTAINER = document.createElement('div');
-const COMMENTS = document.createElement('div');
+const COMMENTS = document.createElement('div'); 
+
+//let language = localStorage.getItem('keyboardLanguage') || 'en';
+//window.addEventListener('beforeunload', () => localStorage.setItem('keyboardLanguage', language));
+
+document.addEventListener('DOMContentLoaded', createPage); //отрисовываем структуру страницы
+createKeyboard(/*language*/); //отрисовываем клавиатуру
+
+document.addEventListener('keydown', function(event) {
+   let activeKey = document.getElementById(event.code);
+   console.log(activeKey);
+   activeKey.classList.add('active');
+});
+document.addEventListener('keyup', function(event) {
+    let activeKey = document.getElementById(event.code);
+    activeKey.classList.remove('active');
+ });
 
 
-let keyboardLanguage = localStorage.getItem('keyboardLanguage') || 'en';
-document.addEventListener('DOMContentLoaded', createPage);
 
 function createPage () {
     document.body.appendChild(MAIN);
@@ -447,7 +461,6 @@ function createPage () {
 
     KEYBOARD_CONTAINER.classList.add('keyboard-container')
     WRAPPER.appendChild(KEYBOARD_CONTAINER);
-    createKeyboard();
 
     WRAPPER.appendChild(COMMENTS);
     COMMENTS.classList.add('comments')
@@ -479,8 +492,8 @@ function createKeyboard() {
         let key = document.createElement('button');
         key.classList.add('key');
         key.classList.add(KEYS[i].size);
+        key.setAttribute('id', KEYS[i].code);
         if (KEYS[i].isFunctional){ key.classList.add('functional');}
-       
 
         if (i < 14) {
             row0.appendChild(key);

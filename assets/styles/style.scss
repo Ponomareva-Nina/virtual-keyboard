@@ -5,7 +5,7 @@ $color-key-bg: #e0e0e3;
 $color-accent: #d0b084;
 $color-sceneColor: #d0b084;
 $color-compliment: #3c3636;
-$color-key-hover-bg: #e4dbd1;
+$color-key-hover: #f78d14;
 
 $key-width-base: 50px; 
 $key-height: 50px;
@@ -93,10 +93,13 @@ $key-height: 50px;
     border-color: $color-compliment;
     &:hover {
         cursor: pointer;
-        border-color: $color-accent;
-        background-color: $color-key-hover-bg;
+        border-color: $color-key-hover;
         color: $color-key-text;
     }
+}
+.active {
+    border-color: $color-key-hover;
+    color: $color-key-text;
 }
 .standard {
     width: $key-width-base;
