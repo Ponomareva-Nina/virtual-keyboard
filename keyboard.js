@@ -430,12 +430,6 @@ const COMMENTS = document.createElement('div');
 document.addEventListener('DOMContentLoaded', createPage); //отрисовываем структуру страницы
 createKeyboard(/*language*/); //отрисовываем клавиатуру
 
-// клики мышкой по кнопкам на виртуальной клавиатуре выводят символы в textarea
-document.addEventListener('click', (event) => {
-    if(event.target.classList.contains('key') && !event.target.classList.contains('functional')){
-        TEXTAREA.innerHTML += event.target.innerHTML; 
-    };
-});
 
 //нажатие на кнопку на физической клавиатуре подсвечивает кнопку на виртуальной:
 document.addEventListener('keydown', function(event) {
@@ -446,7 +440,18 @@ document.addEventListener('keyup', function(event) {
     let activeKey = document.getElementById(event.code);
     activeKey.classList.remove('active');
  });
+ document.addEventListener('keypress', function(event) {
+    event.preventDefault();
+    TEXTAREA.textContent += event.key;
+});
 
+// клики мышкой по кнопкам на виртуальной клавиатуре выводят символы в textarea
+document.addEventListener('click', (event) => {
+    event.preventDefault();
+    if(event.target.classList.contains('key') && !event.target.classList.contains('functional')){
+        TEXTAREA.textContent += event.target.innerHTML; 
+    };
+});
 
 // генерация DOM-элементов
 function createPage () {
