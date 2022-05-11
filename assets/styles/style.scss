@@ -1,0 +1,119 @@
+$color-key-text: #202024;
+$color-text: #38383f;
+
+$color-key-bg: #e0e0e3;
+$color-accent: #d0b084;
+$color-sceneColor: #d0b084;
+$color-compliment: #3c3636;
+$color-key-hover-bg: #e4dbd1;
+
+$key-width-base: 50px; 
+$key-height: 50px;
+
+
+@font-face {
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/arial/arial-regular.ttf");
+}
+
+@font-face {
+    font-family: "Georgia";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/georgia/georgia-regular.ttf");
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 130%;
+    background-color: $color-sceneColor;
+}
+.wrapper {
+    max-width: 1200px;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.title {
+    font-family: "Georgia";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 130%;
+    color: $color-text;
+    text-align: center;
+    margin: 0;
+}
+.text-container {
+    border:2px solid $color-compliment;
+    display: block;
+    box-sizing: border-box;
+    width: 825px;
+    padding: 10px;
+    font-family: "Arial";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 25px;
+    background-color: $color-key-bg;
+}
+.keyboard-container {
+    border:2px solid $color-compliment;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+    font-size: 18px;
+    width: fit-content;
+    border-radius: 5px;
+}
+.keyboard-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+}
+.comments {
+    text-align: center;
+    color: $color-text;
+    p {
+        margin: 10px 0 0 0;
+    }
+}
+.key {
+    border-color: $color-compliment;
+    &:hover {
+        cursor: pointer;
+        border-color: $color-accent;
+        background-color: $color-key-hover-bg;
+        color: $color-key-text;
+    }
+}
+.standard {
+    width: $key-width-base;
+    height: $key-height;
+    background-color:$color-key-bg;
+    color: $color-key-text;
+}
+.large {
+    width: $key-width-base * 2.1;
+    height: $key-height;
+}
+.x-large {
+    width: $key-width-base * 7.6;
+    height: $key-height;
+    background-color: $color-compliment;
+}
+.functional {
+    background-color: $color-compliment;
+    color: $color-key-bg;
+}
